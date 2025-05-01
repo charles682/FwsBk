@@ -1,4 +1,5 @@
 
+
 import { notFound } from 'next/navigation';
 
 import { db } from '@/lib/prisma';
@@ -13,6 +14,7 @@ interface ProductPageProps {
 
 const ProductPage = async ({params}: ProductPageProps) => {
     const {slug, productId} = await params;
+
     const product = await db.product.findUnique({
         where: {id: productId},
            include: {
