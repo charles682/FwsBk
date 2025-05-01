@@ -6,6 +6,7 @@ import Image from "next/image";
 import  { useState } from 'react';
 
 import { Button } from "@/components/ui/Button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatCurrency } from "@/helpers/format-currency";
 
 interface ProductDetailsProps{
@@ -37,8 +38,8 @@ const ProductDetails= ({ product}: ProductDetailsProps) => {
     };
 
     return ( 
-        <div className="relative z-50 rounded-t-3xl mt-[-1.5rem] p-5 flex flex-col flex-auto">
-              <div className="flex-auto">
+        <div className="relative z-50 rounded-t-3xl mt-[-1.5rem] p-5 flex flex-col flex-auto overflow-hidden">
+              <div className="flex-auto overflow-hidden">
                   {/* Restaurante */}
                   <div className="flex intems-center gap-1.5 ">
                     <Image 
@@ -53,7 +54,7 @@ const ProductDetails= ({ product}: ProductDetailsProps) => {
 
                 <h2 className="mt-1 text-xl font-semibold">{product.name}</h2>
                 {/* Preço  e quantidae*/}   
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mt-3">
                 <h3 className="text-xl font-semibold">
 
                 {formatCurrency(product.price)}
@@ -73,21 +74,30 @@ const ProductDetails= ({ product}: ProductDetailsProps) => {
                   </Button>
                 </div>
                 </div>
-                {/* Descrição */}
-                <div className="mt-6 space-y-3">
-                    <h4 className="font-semibold">Sobre</h4>
-                    <p className="text-sm text-muted-foreground">{product.description}</p>
+
+                <ScrollArea className="h-full">
+                      {/* Descrição */}
+                  <div className="mt-6 space-y-3">
+                        <h4 className="font-semibold">Sobre</h4>
+                        <p className="text-sm text-muted-foreground">{product.description}</p>
+                    </div>
+
+                    {/* Ingredientes */}
+                    <div className="mt-6 space-y-3">
+                        <div className="flex items-center gap-1">
+                            <ChefHatIcon/>
+                        <h4 className="font-semibold">Ingredientes</h4>
+                        </div>
+                        <ul className="list-disc px-5 text-sm text-muted-foreground">
+                            {product.ingredients.map((ingredient) => (
+                                <li key={ingredient}>{ingredient}</li>
+                            ))}
+                        </ul>
+
+                    </div>
+                </ScrollArea>
                 </div>
-                {/* Ingredientes */}
-                <div className="mt-6 space-y-3">
-                     <div className="flex items-center gap-1">
-                        <ChefHatIcon/>
-                     <h4 className="font-semibold">Ingredientes</h4>
-                     </div>
-                    <p className="text-sm text-muted-foreground">{product.ingredients}</p>
-                </div>
-              </div>
-                <Button className="bg-yellow-400 mt-6 w-full rounded-full">Adicionar a sacola</Button>
+                <Button className="bg-yellow-400  w-full rounded-full">Adicionar a sacola</Button>
             </div>
      );
 }
