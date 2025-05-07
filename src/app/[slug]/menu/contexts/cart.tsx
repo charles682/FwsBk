@@ -11,6 +11,7 @@ export interface CartProduct
 export interface ICartContext {
     isOpen: boolean;
     products: CartProduct[];
+    total: number;
     toggleCart: () => void;
     addProduct: (product: CartProduct) => void;
     decreaseProductQuantity: (product: string) => void;
@@ -21,6 +22,7 @@ export interface ICartContext {
 export const CartContext = createContext<ICartContext>({
     isOpen: false, //por padrao o carrinho vai estar fechado
     products: [],
+    total: 0, // valor total do carrinho
     toggleCart: () => {}, // funcao vazia
     addProduct: () => {}, // funcao vazia
     decreaseProductQuantity: () => {}, // funcao vazia
@@ -35,14 +37,20 @@ export const CartProvider = ({children}: {children: ReactNode}) => {
     const [products, setProducts] = useState<CartProduct[]>([]);
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
+    const total = products.reduce((acc, product) =>{
+        return acc + product.price * product.quantity;
+    }, 0)
+
     const toggleCart = () =>{
         setIsOpen(prev => !prev)
+    //verifica se o carrinho esta aberto ou fechado
+    //se estiver aberto, fecha o carrinho
     }
 
     const addProduct = (product: CartProduct) => {
         //verifica se o produto ja esta no carrinho
         //se sim, atualiza a quantidade
-        //se nao, adiciona o produto ao carrinho
+        //se nao, adiciona o produtoho ao carrin
         const productsIsAlreadyOnTheCart = products.some(
             prevProducts => prevProducts.id === product.id);
         
@@ -64,6 +72,7 @@ export const CartProvider = ({children}: {children: ReactNode}) => {
     })
 } ;
 const decreaseProductQuantity = (productId: string) => {
+
     setProducts((prevProducts) => {
         return prevProducts.map((prevProduct) => {
             if (prevProduct.id !== productId) {
@@ -88,6 +97,8 @@ const increaseProductQuantity = (productId: string) => {
     });
 };
 const removeProduct = (productId: string) => {
+//remove o produto do carrinho
+//filtra o produto que tem o id igual ao id do produto que queremos remover
     setProducts(prevProducts => prevProducts.filter(prevProduct => prevProduct.id !== productId));
 };
 
@@ -101,6 +112,7 @@ const removeProduct = (productId: string) => {
             decreaseProductQuantity,
             increaseProductQuantity,
             removeProduct,
+            total,
         }}>
             {children}
          </CartContext.Provider>
