@@ -39,3 +39,5 @@ export const removeCpfPunctuation = (cpf: string) => {
     return secondVerifier === parseInt(cpf.charAt(10));
   };
   
+
+  

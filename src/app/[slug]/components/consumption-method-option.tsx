@@ -13,6 +13,7 @@ interface ConsumptionMethodOptionProps {
   option: ConsumptionMethod;
 }
 
+
 const ConsumptionMethodOption = ({
   slug,
   imageUrl,
