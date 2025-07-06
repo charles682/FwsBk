@@ -54,8 +54,10 @@ export const createOrder = async (input: createOrderInput) => {
         0,
       ),
       consumptionMethod: input.consumptionMethod,
-      restaurantId:restaurant.id,
+      restaurantId: restaurant.id,
     },
   });
-  redirect(`/${input.slug}/orders?cpf=${removeCpfPunctuation(input.customerCpf)}`); // redirecionar para a pagina de pedidos ja realizados
+  redirect(
+    `/${input.slug}/orders?cpf=${removeCpfPunctuation(input.customerCpf)}`,
+  ); // redirecionar para a pagina de pedidos ja realizados
 };

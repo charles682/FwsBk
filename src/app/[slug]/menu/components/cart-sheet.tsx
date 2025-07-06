@@ -38,7 +38,7 @@ const CartSheet = () => {
             </CardContent>
           </Card>
           <Button
-            className="w-full "
+            className="w-full"
             onClick={() => setFinishOrderDialogISOpen(true)}
           >
             Finalizar Pedido
@@ -48,7 +48,7 @@ const CartSheet = () => {
       <FinishOrderDialog
         open={finishOrderDialogIsOpen}
         onOpenChange={setFinishOrderDialogISOpen}
-        />
+      />
     </Sheet>
   );
 };

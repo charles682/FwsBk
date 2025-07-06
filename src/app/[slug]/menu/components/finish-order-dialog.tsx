@@ -7,7 +7,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import { useContext, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { PatternFormat } from "react-number-format";
-import { toast } from "sonner"
+import { toast } from "sonner";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/Button";
@@ -77,7 +77,6 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
         "consumptionMethod",
       ) as ConsumptionMethod;
       startTransition(async () => {
-
         await createOrder({
           consumptionMethod,
           customerCpf: data.cpf,
@@ -85,15 +84,15 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
           products,
           slug,
         });
-        
-              onOpenChange(false);
-              toast.success("Pedido realizado com sucesso!");
-      })
+
+        onOpenChange(false);
+        toast.success("Pedido realizado com sucesso!");
+      });
     } catch (error) {
       console.log(error);
       toast.error("Erro ao finalizar o pedido"); // <-- ADICIONE ISSO
     }
-  }; 
+  };
 
   return (
     <>
@@ -150,7 +149,7 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
                     className="rounded-lg"
                     disabled={isPeding}
                   >
-                    {isPeding && <Loader2Icon className="animate-spin"/>}
+                    {isPeding && <Loader2Icon className="animate-spin" />}
                     Finalizar
                   </Button>
                   <DrawerClose asChild>
