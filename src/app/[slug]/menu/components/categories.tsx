@@ -4,7 +4,7 @@ import { ClockIcon } from "lucide-react";
 import Image from "next/image";
 import { useContext, useState } from "react";
 
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { formatCurrency } from "@/helpers/format-currency";
 
