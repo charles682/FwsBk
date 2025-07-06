@@ -57,7 +57,8 @@ export const createOrder = async (input: createOrderInput) => {
       restaurantId: restaurant.id,
     },
   });
-  revalidatePath(`/${input.slug}/orders`);
+  revalidatePath(`/${input.slug}/orders`); 
+  redirect(
     `/${input.slug}/orders?cpf=${removeCpfPunctuation(input.customerCpf)}`,
   ); // redirecionar para a pagina de pedidos ja realizados
 };
