@@ -1,5 +1,6 @@
 
-![FSW Donald's - Preview](./preview.png)
+![FSW Donald's - Preview](https://chat.openai.com/mnt/data/Screenshot_13.png)
+
 
 
 
